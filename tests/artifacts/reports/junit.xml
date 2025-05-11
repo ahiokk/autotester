@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites><testsuite name="pytest" errors="4" failures="12" skipped="0" tests="37" time="0.309" timestamp="2025-04-28T21:02:22.600542+03:00" hostname="DESKTOP-GTDTLNU"><testcase classname="tests.test_duplicate_flag" name="test_duplicate_flag_is_bool" time="0.001"><failure message="FileNotFoundError: Файл конфигурации не найден: \var\opt\kaspersky\config.ini">def test_duplicate_flag_is_bool():
+        """Флаг Duplicate должен быть булевым"""
+        config_path = get_config_path()
+        assert config_path is not None, "CONFIG_PATH не установлен"
+    
+&gt;       sections = file_parser()
+
+test_duplicate_flag.py:12: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def file_parser() -&gt; dict:  #парсер конфигурационных файлов ini
+        config_path = get_config_path()
+        path = pathlib.Path(config_path)
+    
+        sections = {}
+        used_sections = set()
+        current_section = None
+        has_duplicates = False
+    
+        if not path.is_file():
+&gt;           raise FileNotFoundError(f"Файл конфигурации не найден: {path}")
+E           FileNotFoundError: Файл конфигурации не найден: \var\opt\kaspersky\config.ini
+
+..\framework\config_reader.py:19: FileNotFoundError</failure></testcase><testcase classname="tests.test_file_presence" name="test_config_file_exists" time="0.001"><failure message="AssertionError: Файл конфигурации не найден по пути \var\opt\kaspersky\config.ini&#10;assert False&#10; +  where False = exists()&#10; +    where exists = WindowsPath('/var/opt/kaspersky/config.ini').exists">def test_config_file_exists():
+        """Проверяем, что файл конфигурации, указанный в CONFIG_PATH, существует"""
+        config_path = get_config_path()
+        assert config_path is not None, "Переменная окружения CONFIG_PATH не установлена"
+    
+        path = Path(config_path)
+&gt;       assert path.exists(), f"Файл конфигурации не найден по пути {path}"
+E       AssertionError: Файл конфигурации не найден по пути \var\opt\kaspersky\config.ini
+E       assert False
+E        +  where False = exists()
+E        +    where exists = WindowsPath('/var/opt/kaspersky/config.ini').exists
+
+test_file_presence.py:11: AssertionError</failure></testcase><testcase classname="tests.test_general_bools" name="test_boolean_flags" time="0.001"><failure message="FileNotFoundError: Файл конфигурации не найден: \var\opt\kaspersky\config.ini">def test_boolean_flags():
+        """Параметры должны быть true/false/yes/no"""
+&gt;       sections = file_parser()
+
+test_general_bools.py:12: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def file_parser() -&gt; dict:  #парсер конфигурационных файлов ini
+        config_path = get_config_path()
+        path = pathlib.Path(config_path)
+    
+        sections = {}
+        used_sections = set()
+        current_section = None
+        has_duplicates = False
+    
+        if not path.is_file():
+&gt;           raise FileNotFoundError(f"Файл конфигурации не найден: {path}")
+E           FileNotFoundError: Файл конфигурации не найден: \var\opt\kaspersky\config.ini
+
+..\framework\config_reader.py:19: FileNotFoundError</failure></testcase><testcase classname="tests.test_general_ints" name="test_scan_memory_limit" time="0.001"><failure message="FileNotFoundError: Файл конфигурации не найден: \var\opt\kaspersky\config.ini">def test_scan_memory_limit():
+        """ScanMemoryLimit должно быть целым в [1024, 8192]"""
+&gt;       sections = file_parser()
+
+test_general_ints.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def file_parser() -&gt; dict:  #парсер конфигурационных файлов ini
+        config_path = get_config_path()
+        path = pathlib.Path(config_path)
+    
+        sections = {}
+        used_sections = set()
+        current_section = None
+        has_duplicates = False
+    
+        if not path.is_file():
+&gt;           raise FileNotFoundError(f"Файл конфигурации не найден: {path}")
+E           FileNotFoundError: Файл конфигурации не найден: \var\opt\kaspersky\config.ini
+
+..\framework\config_reader.py:19: FileNotFoundError</failure></testcase><testcase classname="tests.test_general_ints" name="test_exec_arg_max" time="0.001"><failure message="FileNotFoundError: Файл конфигурации не найден: \var\opt\kaspersky\config.ini">def test_exec_arg_max():
+        """ExecArgMax должно быть целым в [10, 100]"""
+&gt;       sections = file_parser()
+
+test_general_ints.py:14: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def file_parser() -&gt; dict:  #парсер конфигурационных файлов ini
+        config_path = get_config_path()
+        path = pathlib.Path(config_path)
+    
+        sections = {}
+        used_sections = set()
+        current_section = None
+        has_duplicates = False
+    
+        if not path.is_file():
+&gt;           raise FileNotFoundError(f"Файл конфигурации не найден: {path}")
+E           FileNotFoundError: Файл конфигурации не найден: \var\opt\kaspersky\config.ini
+
+..\framework\config_reader.py:19: FileNotFoundError</failure></testcase><testcase classname="tests.test_general_ints" name="test_exec_env_max" time="0.002"><failure message="FileNotFoundError: Файл конфигурации не найден: \var\opt\kaspersky\config.ini">def test_exec_env_max():
+        """ExecEnvMax должно быть целым в [10, 100]"""
+&gt;       sections = file_parser()
+
+test_general_ints.py:20: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def file_parser() -&gt; dict:  #парсер конфигурационных файлов ini
+        config_path = get_config_path()
+        path = pathlib.Path(config_path)
+    
+        sections = {}
+        used_sections = set()
+        current_section = None
+        has_duplicates = False
+    
+        if not path.is_file():
+&gt;           raise FileNotFoundError(f"Файл конфигурации не найден: {path}")
+E           FileNotFoundError: Файл конфигурации не найден: \var\opt\kaspersky\config.ini
+
+..\framework\config_reader.py:19: FileNotFoundError</failure></testcase><testcase classname="tests.test_general_ints" name="test_max_inotify_watches" time="0.001"><failure message="FileNotFoundError: Файл конфигурации не найден: \var\opt\kaspersky\config.ini">def test_max_inotify_watches():
+        """MaxInotifyWatches должно быть целым в [1000, 1000000]"""
+&gt;       sections = file_parser()
+
+test_general_ints.py:26: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def file_parser() -&gt; dict:  #парсер конфигурационных файлов ini
+        config_path = get_config_path()
+        path = pathlib.Path(config_path)
+    
+        sections = {}
+        used_sections = set()
+        current_section = None
+        has_duplicates = False
+    
+        if not path.is_file():
+&gt;           raise FileNotFoundError(f"Файл конфигурации не найден: {path}")
+E           FileNotFoundError: Файл конфигурации не найден: \var\opt\kaspersky\config.ini
+
+..\framework\config_reader.py:19: FileNotFoundError</failure></testcase><testcase classname="tests.test_general_ints" name="test_max_inotify_instances" time="0.001"><failure message="FileNotFoundError: Файл конфигурации не найден: \var\opt\kaspersky\config.ini">def test_max_inotify_instances():
+        """MaxInotifyInstances должно быть целым в [1024, 8192]"""
+&gt;       sections = file_parser()
+
+test_general_ints.py:32: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def file_parser() -&gt; dict:  #парсер конфигурационных файлов ini
+        config_path = get_config_path()
+        path = pathlib.Path(config_path)
+    
+        sections = {}
+        used_sections = set()
+        current_section = None
+        has_duplicates = False
+    
+        if not path.is_file():
+&gt;           raise FileNotFoundError(f"Файл конфигурации не найден: {path}")
+E           FileNotFoundError: Файл конфигурации не найден: \var\opt\kaspersky\config.ini
+
+..\framework\config_reader.py:19: FileNotFoundError</failure></testcase><testcase classname="tests.test_general_special" name="test_package_type" time="0.001"><failure message="FileNotFoundError: Файл конфигурации не найден: \var\opt\kaspersky\config.ini">def test_package_type():
+        """PackageType должно быть rpm или deb"""
+&gt;       sections = file_parser()
+
+test_general_special.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def file_parser() -&gt; dict:  #парсер конфигурационных файлов ini
+        config_path = get_config_path()
+        path = pathlib.Path(config_path)
+    
+        sections = {}
+        used_sections = set()
+        current_section = None
+        has_duplicates = False
+    
+        if not path.is_file():
+&gt;           raise FileNotFoundError(f"Файл конфигурации не найден: {path}")
+E           FileNotFoundError: Файл конфигурации не найден: \var\opt\kaspersky\config.ini
+
+..\framework\config_reader.py:19: FileNotFoundError</failure></testcase><testcase classname="tests.test_general_special" name="test_core_dumps_path" time="0.001"><failure message="FileNotFoundError: Файл конфигурации не найден: \var\opt\kaspersky\config.ini">def test_core_dumps_path():
+        """CoreDumpsPath должен быть существующим абсолютным путём"""
+&gt;       sections = file_parser()
+
+test_general_special.py:14: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def file_parser() -&gt; dict:  #парсер конфигурационных файлов ini
+        config_path = get_config_path()
+        path = pathlib.Path(config_path)
+    
+        sections = {}
+        used_sections = set()
+        current_section = None
+        has_duplicates = False
+    
+        if not path.is_file():
+&gt;           raise FileNotFoundError(f"Файл конфигурации не найден: {path}")
+E           FileNotFoundError: Файл конфигурации не найден: \var\opt\kaspersky\config.ini
+
+..\framework\config_reader.py:19: FileNotFoundError</failure></testcase><testcase classname="tests.test_general_special" name="test_machine_id_uuid" time="0.001"><failure message="FileNotFoundError: Файл конфигурации не найден: \var\opt\kaspersky\config.ini">def test_machine_id_uuid():
+        """MachineId должно быть корректным UUID"""
+&gt;       sections = file_parser()
+
+test_general_special.py:21: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def file_parser() -&gt; dict:  #парсер конфигурационных файлов ini
+        config_path = get_config_path()
+        path = pathlib.Path(config_path)
+    
+        sections = {}
+        used_sections = set()
+        current_section = None
+        has_duplicates = False
+    
+        if not path.is_file():
+&gt;           raise FileNotFoundError(f"Файл конфигурации не найден: {path}")
+E           FileNotFoundError: Файл конфигурации не найден: \var\opt\kaspersky\config.ini
+
+..\framework\config_reader.py:19: FileNotFoundError</failure></testcase><testcase classname="tests.test_general_special" name="test_locale_format" time="0.001"><failure message="FileNotFoundError: Файл конфигурации не найден: \var\opt\kaspersky\config.ini">def test_locale_format():
+        """Locale в формате RFC3066 или Unix locale"""
+&gt;       sections = file_parser()
+
+test_general_special.py:30: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def file_parser() -&gt; dict:  #парсер конфигурационных файлов ini
+        config_path = get_config_path()
+        path = pathlib.Path(config_path)
+    
+        sections = {}
+        used_sections = set()
+        current_section = None
+        has_duplicates = False
+    
+        if not path.is_file():
+&gt;           raise FileNotFoundError(f"Файл конфигурации не найден: {path}")
+E           FileNotFoundError: Файл конфигурации не найден: \var\opt\kaspersky\config.ini
+
+..\framework\config_reader.py:19: FileNotFoundError</failure></testcase><testcase classname="tests.test_parse_each_file" name="test_parser_returns_dict[1config.ini]" time="0.001" /><testcase classname="tests.test_parse_each_file" name="test_parser_returns_dict[2config.ini]" time="0.001" /><testcase classname="tests.test_parse_each_file" name="test_parser_returns_dict[3config.ini]" time="0.001" /><testcase classname="tests.test_parse_each_file" name="test_parser_returns_dict[4config.ini]" time="0.001" /><testcase classname="tests.test_parse_each_file" name="test_parser_returns_dict[5config.ini]" time="0.001" /><testcase classname="tests.test_parse_each_file" name="test_parser_returns_dict[6config.ini]" time="0.001" /><testcase classname="tests.test_parse_each_file" name="test_parser_returns_dict[7config.ini]" time="0.001" /><testcase classname="tests.test_sections" name="test_sections_present[1config.ini]" time="0.001" /><testcase classname="tests.test_sections" name="test_sections_present[2config.ini]" time="0.001" /><testcase classname="tests.test_sections" name="test_sections_present[3config.ini]" time="0.001" /><testcase classname="tests.test_sections" name="test_sections_present[4config.ini]" time="0.001" /><testcase classname="tests.test_sections" name="test_sections_present[5config.ini]" time="0.001" /><testcase classname="tests.test_sections" name="test_sections_present[6config.ini]" time="0.001" /><testcase classname="tests.test_sections" name="test_sections_present[7config.ini]" time="0.001" /><testcase classname="tests.test_validate_type" name="test_validate_returns_dict[1config.ini]" time="0.001" /><testcase classname="tests.test_validate_type" name="test_validate_returns_dict[2config.ini]" time="0.001" /><testcase classname="tests.test_validate_type" name="test_validate_returns_dict[3config.ini]" time="0.001" /><testcase classname="tests.test_validate_type" name="test_validate_returns_dict[4config.ini]" time="0.001" /><testcase classname="tests.test_validate_type" name="test_validate_returns_dict[5config.ini]" time="0.001" /><testcase classname="tests.test_validate_type" name="test_validate_returns_dict[6config.ini]" time="0.001" /><testcase classname="tests.test_validate_type" name="test_validate_returns_dict[7config.ini]" time="0.001" /><testcase classname="tests.test_watchdog" name="test_connect_timeout" time="0.001"><error message="failed on setup with &quot;FileNotFoundError: Файл конфигурации не найден: \var\opt\kaspersky\config.ini&quot;">@pytest.fixture
+    def sections():
+        """Парсим конфиг и возвращаем словарь секций"""
+&gt;       return file_parser()
+
+conftest.py:7: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def file_parser() -&gt; dict:  #парсер конфигурационных файлов ini
+        config_path = get_config_path()
+        path = pathlib.Path(config_path)
+    
+        sections = {}
+        used_sections = set()
+        current_section = None
+        has_duplicates = False
+    
+        if not path.is_file():
+&gt;           raise FileNotFoundError(f"Файл конфигурации не найден: {path}")
+E           FileNotFoundError: Файл конфигурации не найден: \var\opt\kaspersky\config.ini
+
+..\framework\config_reader.py:19: FileNotFoundError</error></testcase><testcase classname="tests.test_watchdog" name="test_max_virtual_memory" time="0.001"><error message="failed on setup with &quot;FileNotFoundError: Файл конфигурации не найден: \var\opt\kaspersky\config.ini&quot;">@pytest.fixture
+    def sections():
+        """Парсим конфиг и возвращаем словарь секций"""
+&gt;       return file_parser()
+
+conftest.py:7: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def file_parser() -&gt; dict:  #парсер конфигурационных файлов ini
+        config_path = get_config_path()
+        path = pathlib.Path(config_path)
+    
+        sections = {}
+        used_sections = set()
+        current_section = None
+        has_duplicates = False
+    
+        if not path.is_file():
+&gt;           raise FileNotFoundError(f"Файл конфигурации не найден: {path}")
+E           FileNotFoundError: Файл конфигурации не найден: \var\opt\kaspersky\config.ini
+
+..\framework\config_reader.py:19: FileNotFoundError</error></testcase><testcase classname="tests.test_watchdog" name="test_max_memory" time="0.001"><error message="failed on setup with &quot;FileNotFoundError: Файл конфигурации не найден: \var\opt\kaspersky\config.ini&quot;">@pytest.fixture
+    def sections():
+        """Парсим конфиг и возвращаем словарь секций"""
+&gt;       return file_parser()
+
+conftest.py:7: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def file_parser() -&gt; dict:  #парсер конфигурационных файлов ini
+        config_path = get_config_path()
+        path = pathlib.Path(config_path)
+    
+        sections = {}
+        used_sections = set()
+        current_section = None
+        has_duplicates = False
+    
+        if not path.is_file():
+&gt;           raise FileNotFoundError(f"Файл конфигурации не найден: {path}")
+E           FileNotFoundError: Файл конфигурации не найден: \var\opt\kaspersky\config.ini
+
+..\framework\config_reader.py:19: FileNotFoundError</error></testcase><testcase classname="tests.test_watchdog" name="test_ping_interval" time="0.001"><error message="failed on setup with &quot;FileNotFoundError: Файл конфигурации не найден: \var\opt\kaspersky\config.ini&quot;">@pytest.fixture
+    def sections():
+        """Парсим конфиг и возвращаем словарь секций"""
+&gt;       return file_parser()
+
+conftest.py:7: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def file_parser() -&gt; dict:  #парсер конфигурационных файлов ini
+        config_path = get_config_path()
+        path = pathlib.Path(config_path)
+    
+        sections = {}
+        used_sections = set()
+        current_section = None
+        has_duplicates = False
+    
+        if not path.is_file():
+&gt;           raise FileNotFoundError(f"Файл конфигурации не найден: {path}")
+E           FileNotFoundError: Файл конфигурации не найден: \var\opt\kaspersky\config.ini
+
+..\framework\config_reader.py:19: FileNotFoundError</error></testcase></testsuite></testsuites>
